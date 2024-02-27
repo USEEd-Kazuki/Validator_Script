@@ -1,26 +1,26 @@
 import unreal
 import math
 
-#instances of unreal classes
 editor_util = unreal.EditorUtilityLibrary()
 
-# get the selected assets
+# 選択中のアセット取得
 
 selected_assets = editor_util.get_selected_assets()
 num_assets = len(selected_assets)
 not_pow = 0
 
+# 選択されたアセットをループ処理
 for asset in selected_assets:
     
     asset_name = asset.get_fname()
     asset_path = asset.get_path_name()
 
     try :
-
+         # アセットのサイズを取得
         x_size = asset.blueprint_get_size_x()
         y_size = asset.blueprint_get_size_y()
 
-        # check if both values are power of two
+        # サイズが2のべき乗かどうかをチェック
         is_x_valid = math.log(x_size, 2).is_integer()
         is_y_valid = math.log(y_size, 2).is_integer()
 
